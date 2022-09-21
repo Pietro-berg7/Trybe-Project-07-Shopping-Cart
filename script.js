@@ -97,8 +97,8 @@ async function addProductCart () {
   addCart.forEach((button) => {
     button.addEventListener('click', async () => {
       const item = await fetchItem(button.parentElement.firstChild.innerText);
-      const cartItem = document.querySelector('.cart__items')
-      const prices = document.querySelector('.total-price')
+      const cartItem = document.querySelector('.cart__items');
+      const prices = document.querySelector('.total-price');
       cartItem.appendChild(createElement(item));
       totalPrice += item.price;
       prices.innerText = totalPrice.toFixed(2);
@@ -106,7 +106,21 @@ async function addProductCart () {
   });
 }
 
+function emptyCart () {
+  const btn = document.querySelector('.empty-cart');
+  btn.addEventListener('click', () => {
+    const cartItem = document.querySelectorAll('.cart__item');
+    cartItem.forEach((item) => {
+      const prices = document.querySelector('.total-price');
+      item.remove();
+      prices.innerText = 0;
+      totalPrice = 0;
+    });
+  });
+}
+
 window.onload = async () => {
   await createProductList();
   await addProductCart();
+  emptyCart();
 };
