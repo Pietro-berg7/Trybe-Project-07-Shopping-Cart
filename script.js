@@ -52,17 +52,10 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
 async function createProductList() {
   const products = await fetchProducts('computador');
 
-  // await products.results.forEach(({ id, title, thumbnail }) => {
-  //   document.querySelector('.items')
-  //     .appendChild(createProductItemElement({
-  //       id: id, nome: title, imagem: thumbnail,
-  //   }));
-  // });
-  
-  const productList = products.results
-    .map((product) => createProductItemElement(product));
-
-  productList.forEach(createProductItemElement);
+  await products.results.forEach((product) => {
+    document.querySelector('.items')
+      .appendChild(createProductItemElement(product));
+  });
 }
 
 /**
