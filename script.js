@@ -89,5 +89,5 @@ const createCartItemElement = ({ id, title, price }) => {
 };
 
 window.onload = async () => {
-  await fetchProducts();
+  await createProductList();
 };
